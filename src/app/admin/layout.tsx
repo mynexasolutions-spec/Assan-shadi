@@ -5,7 +5,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Admin Portal | Asaan Shaadi Matrimony",
   description: "Secure management console for Asaan Shaadi matrimonial platform.",
-  robots: "noindex, nofollow",
+  robots: { index: false, follow: false },
 };
 
 export default function AdminLayout({

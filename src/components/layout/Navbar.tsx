@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
@@ -56,59 +57,16 @@ export const Navbar: React.FC = () => {
         <div className="relative flex items-center justify-between gap-4 py-1 sm:py-2">
             {/* Brand Logo & Tagline */}
             <Link href="/" className="flex items-center gap-3 sm:gap-3.5 group flex-shrink-0">
-              {/* Interlocking Double Knot & Heart Logo */}
-              <div className="relative w-9 h-9 sm:w-11 sm:h-11 flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
-                <svg
-                  viewBox="0 0 64 64"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-full h-full drop-shadow-[0_2px_8px_rgba(229,195,132,0.35)]"
-                >
-                  <defs>
-                    <linearGradient id="goldKnotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#C59B48" />
-                      <stop offset="35%" stopColor="#FFD78A" />
-                      <stop offset="70%" stopColor="#E5C384" />
-                      <stop offset="100%" stopColor="#FFFDF9" />
-                    </linearGradient>
-                  </defs>
-                  
-                  {/* Interlocking double wedding rings forming pretzel/knot and heart on top */}
-                  {/* Left Ring */}
-                  <ellipse
-                    cx="25"
-                    cy="38"
-                    rx="13"
-                    ry="11"
-                    stroke="url(#goldKnotGrad)"
-                    strokeWidth="3.2"
-                    fill="none"
-                    transform="rotate(-20 25 38)"
-                  />
-                  {/* Right Ring */}
-                  <ellipse
-                    cx="39"
-                    cy="38"
-                    rx="13"
-                    ry="11"
-                    stroke="url(#goldKnotGrad)"
-                    strokeWidth="3.2"
-                    fill="none"
-                    transform="rotate(20 39 38)"
-                  />
-                  {/* Top Heart Crest / Knot Arch */}
-                  <path
-                    d="M21 27 C 21 17, 32 16, 32 23 C 32 16, 43 17, 43 27 C 43 32, 32 37, 32 37 C 32 37, 21 32, 21 27 Z"
-                    stroke="url(#goldKnotGrad)"
-                    strokeWidth="3.2"
-                    strokeLinejoin="round"
-                    strokeLinecap="round"
-                    fill="none"
-                  />
-                  {/* Little inner love droplet */}
-                  <circle cx="32" cy="24" r="2.2" fill="url(#goldKnotGrad)" />
-                </svg>
-              </div>
+              <span className="inline-flex items-center justify-center rounded-xl bg-gradient-to-br from-[#FFFDF9] to-[#F1E0C0] p-1.5 ring-1 ring-[#E5C384]/50 shadow-[0_2px_10px_rgba(229,195,132,0.25)] transition-transform duration-300 group-hover:scale-105">
+                <Image
+                  src="/images/logo-mark.png"
+                  alt=""
+                  width={512}
+                  height={512}
+                  priority
+                  className="h-8 w-8 sm:h-9 sm:w-9 object-contain"
+                />
+              </span>
 
               <div className="flex flex-col">
                 <span className="text-xl sm:text-2xl font-bold font-serif-luxury tracking-tight text-[#FAF7F2] group-hover:text-[#FFD78A] transition-colors leading-none">

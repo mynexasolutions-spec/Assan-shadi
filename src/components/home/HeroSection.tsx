@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -281,19 +282,17 @@ export const HeroSection: React.FC = () => {
 
       // 1. Initial State Setup (Avoid visual jumps / layout shifts)
       gsap.set("#main-navbar", { y: -30, opacity: 0, filter: "blur(8px)" });
-      gsap.set("#hero-eyebrow", { y: 22, opacity: 0, filter: "blur(4px)" });
+      gsap.set("#hero-eyebrow", { y: 22, filter: "blur(4px)" });
       gsap.set("#hero-title-line-1", {
         y: 35,
-        opacity: 0,
         filter: "blur(6px)",
       });
       gsap.set("#hero-title-line-2", {
         y: 35,
-        opacity: 0,
         filter: "blur(6px)",
       });
-      gsap.set("#hero-desc", { y: 25, opacity: 0, filter: "blur(4px)" });
-      gsap.set("#hero-cta", { y: 20, opacity: 0 });
+      gsap.set("#hero-desc", { y: 25, filter: "blur(4px)" });
+      gsap.set("#hero-cta", { y: 20 });
       gsap.set(".stat-item", { y: 25, opacity: 0, scale: 0.95 });
 
       if (imageRef.current) {
@@ -342,7 +341,6 @@ export const HeroSection: React.FC = () => {
           "#hero-eyebrow",
           {
             y: 0,
-            opacity: 1,
             filter: "blur(0px)",
             duration: 0.8,
           },
@@ -354,7 +352,6 @@ export const HeroSection: React.FC = () => {
           "#hero-title-line-1",
           {
             y: 0,
-            opacity: 1,
             filter: "blur(0px)",
             duration: 0.9,
             ease: "expo.out",
@@ -367,7 +364,6 @@ export const HeroSection: React.FC = () => {
           "#hero-title-line-2",
           {
             y: 0,
-            opacity: 1,
             filter: "blur(0px)",
             duration: 0.9,
             ease: "expo.out",
@@ -380,7 +376,6 @@ export const HeroSection: React.FC = () => {
           "#hero-desc",
           {
             y: 0,
-            opacity: 1,
             filter: "blur(0px)",
             duration: 0.85,
           },
@@ -392,7 +387,6 @@ export const HeroSection: React.FC = () => {
           "#hero-cta",
           {
             y: 0,
-            opacity: 1,
             duration: 0.75,
           },
           "-=0.5",
@@ -587,9 +581,10 @@ export const HeroSection: React.FC = () => {
                 id="hero-desc"
                 className="text-base sm:text-lg text-stone-200 max-w-xl leading-relaxed mb-8 sm:mb-10 font-sans-modern font-normal text-center lg:text-left mx-auto lg:mx-0"
               >
-                Where intentional commitment meets deep companionship. Verified
-                profiles, family involvement, and a sunnah-centric approach
-                designed to make honorable matrimony simple and beautiful.
+                Where intentional commitment meets deep companionship. Asaan
+                Shaadi connects Muslim families in Bengaluru through verified
+                profiles, guardian involvement, and a sunnah-centric approach
+                that keeps honorable matrimony simple and beautiful.
               </p>
 
               {/* CTA Action Buttons & Completely Offline Services Box */}
@@ -695,10 +690,13 @@ export const HeroSection: React.FC = () => {
                     "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.7) 12%, black 28%, black 100%)",
                 }}
               >
-                <img
+                <Image
                   ref={imageRef}
-                  src="/images/muslim-wedding-couple.jpg"
-                  alt="A Partnership For Life - Dignified Matrimony"
+                  src="/images/muslim-wedding-couple.webp"
+                  alt="Bride and groom holding hands at a Nikah ceremony"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 42vw"
                   className="w-full h-full object-cover object-[62%_24%] scale-[1.08] will-change-transform"
                 />
                 {/* Subtle warm golden palace tint overlay */}
@@ -785,9 +783,9 @@ export const HeroSection: React.FC = () => {
               <span className="text-xs text-center font-semibold tracking-[0.2em] text-[#B9965B] uppercase font-sans-modern">
                 Our Story • Asaan Shaadi
               </span>
-              <h3 className="font-serif-luxury text-[16px] sm:text-[20px] text-[#FAF7F2] mt-1 text-center">
-                Celebrating Pure Unions & Dignified Companionship
-              </h3>
+              <h2 className="font-serif-luxury text-[16px] sm:text-[20px] text-[#FAF7F2] mt-1 text-center">
+                Celebrating Pure Unions &amp; Dignified Companionship
+              </h2>
               <p className="text-sm text-stone-300 mt-1 text-center">
                 A documentary look into how verified, guardian-supported
                 marriages bring lasting happiness.
@@ -796,9 +794,11 @@ export const HeroSection: React.FC = () => {
 
             {/* Cinematic Video Showcase Container */}
             <div className="relative aspect-video rounded-2xl overflow-hidden bg-stone-900 border border-[#E7DDD0]/80 shadow-inner flex items-center justify-center group">
-              <img
-                src="/images/muslim-wedding-couple.jpg"
-                alt="Our Story Video Preview"
+              <Image
+                src="/images/muslim-wedding-couple.webp"
+                alt="Bride and groom at a Nikah ceremony"
+                fill
+                sizes="(max-width: 768px) 100vw, 768px"
                 className="w-full h-full object-cover opacity-80 group-hover:opacity-90 transition-opacity"
               />
               <div className="absolute inset-0 bg-black/30 flex items-center justify-center">

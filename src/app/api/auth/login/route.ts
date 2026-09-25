@@ -3,10 +3,41 @@ import { adminLoginSchema } from "@/lib/validations";
 import { createSessionToken, verifyPassword, AUTH_COOKIE_NAME } from "@/lib/auth";
 import { supabase, supabaseAdmin, isSupabaseConfigured } from "@/lib/supabase";
 
+// ponytail: in-memory, per-instance rate limit. Fine for a single server;
+// move to Redis/Upstash if this ever runs on multiple instances.
+const LOGIN_WINDOW_MS = 15 * 60 * 1000;
+const LOGIN_MAX_ATTEMPTS = 10;
+const loginAttempts = new Map<string, { count: number; resetAt: number }>();
 
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = loginAttempts.get(ip);
+  if (!entry || now > entry.resetAt) {
+    loginAttempts.set(ip, { count: 1, resetAt: now + LOGIN_WINDOW_MS });
+    return false;
+  }
+  entry.count += 1;
+  return entry.count > LOGIN_MAX_ATTEMPTS;
+}
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = (
+      request.headers.get("x-forwarded-for")?.split(",")[0] ||
+      request.headers.get("x-real-ip") ||
+      "unknown"
+    ).trim();
+
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Too many login attempts. Please try again in a few minutes.",
+        },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const parsed = adminLoginSchema.safeParse(body);
 
@@ -53,6 +84,7 @@ export async function POST(request: NextRequest) {
     }
 
     const token = await createSessionToken(adminUser);
+    loginAttempts.delete(ip);
 
     const response = NextResponse.json({
       success: true,

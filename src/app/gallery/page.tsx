@@ -1,14 +1,18 @@
 import React from "react";
+import { buildMetadata } from "@/lib/seo";
 import { GalleryPageHeader } from "@/components/gallery/GalleryPageHeader";
 import { InteractiveGalleryGrid } from "@/components/gallery/InteractiveGalleryGrid";
 import { GalleryStorySpotlight } from "@/components/gallery/GalleryStorySpotlight";
 import { GalleryFinalCtaSection } from "@/components/gallery/GalleryFinalCtaSection";
 
-export const metadata = {
-  title: "Moments of Togetherness — Matrimonial Gallery | Asaan Shaadi",
+export const metadata = buildMetadata({
+  title: "Moments of Togetherness – Gallery",
   description:
-    "Explore authentic photographs of real couples united through Asaan Shaadi. Celebrating dignity, simple sunnah Nikah, and lasting companionship.",
-};
+    "Browse the Asaan Shaadi gallery for the elegance, warmth and simplicity we celebrate — inspired by dignified, dowry-free Nikah ceremonies.",
+  path: "/gallery",
+});
+
+export const revalidate = 3600;
 
 export default function GalleryPage() {
   return (

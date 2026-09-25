@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { dbService } from "@/lib/supabase";
 import { getCurrentAdmin } from "@/lib/auth";
+
+function revalidateBlog(slug?: string) {
+  revalidatePath("/blog");
+  revalidatePath("/sitemap.xml");
+  if (slug) revalidatePath(`/blog/${slug}`);
+}
 
 export async function GET() {
   try {
@@ -75,6 +82,8 @@ export async function POST(request: NextRequest) {
       keyTakeaways: body.keyTakeaways || [],
     });
 
+    revalidateBlog(newBlog.slug);
+
     return NextResponse.json(
       {
         success: true,
@@ -118,6 +127,8 @@ export async function PATCH(request: NextRequest) {
       );
     }
 
+    revalidateBlog(updated.slug);
+
     return NextResponse.json({
       success: true,
       message: "Article updated successfully",
@@ -158,6 +169,8 @@ export async function DELETE(request: NextRequest) {
         { status: 404 }
       );
     }
+
+    revalidateBlog();
 
     return NextResponse.json({
       success: true,

@@ -22,25 +22,25 @@ export const JourneyToNikahSection: React.FC = () => {
       num: "01",
       title: "Create Your Profile",
       desc: "Share your basic details and preferences.",
-      image: "/images/How_It_Works/img_05.png",
+      image: "/images/How_It_Works/img_05.webp",
     },
     {
       num: "02",
       title: "Get Verified",
       desc: "We manually verify profiles with phone verification.",
-      image: "/images/How_It_Works/img_06.png",
+      image: "/images/How_It_Works/img_06.webp",
     },
     {
       num: "03",
       title: "Find Compatible Matches",
       desc: "Explore genuine profiles that match your criteria.",
-      image: "/images/How_It_Works/img_07.png",
+      image: "/images/How_It_Works/img_07.webp",
     },
     {
       num: "04",
       title: "Connect & Take It Forward",
       desc: "Start a conversation and move towards Nikah with your families.",
-      image: "/images/How_It_Works/img_08.png",
+      image: "/images/How_It_Works/img_08.webp",
     },
   ];
 
@@ -332,10 +332,11 @@ export const JourneyToNikahSection: React.FC = () => {
             className="absolute right-0 top-0 w-full lg:w-[54%] h-[420px] lg:h-full opacity-35 lg:opacity-75 transition-transform will-change-transform"
           >
             <Image
-              src="/images/mosque-arch-sunset.jpg"
+              src="/images/mosque-arch-sunset.webp"
               alt="Sheikh Zayed Grand Mosque sunset architecture"
               fill
               priority
+              sizes="(max-width: 1024px) 100vw, 54vw"
               className="object-cover object-center lg:object-left"
             />
             {/* Smooth Vignette Gradients */}

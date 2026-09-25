@@ -15,19 +15,19 @@ export const MomentsOfTogethernessSection: React.FC = () => {
   const galleryImages = [
     {
       id: "ayaan-saba",
-      src: "/images/couple-ayaan-saba.jpg",
+      src: "/images/couple-ayaan-saba.webp",
       title: "Ayaan & Saba",
       caption: "Golden hour sunset moments overlooking the grand mosque",
     },
     {
       id: "royal-nikah",
-      src: "/images/muslim-wedding-couple.jpg",
+      src: "/images/muslim-wedding-couple.webp",
       title: "Royal Nikah Elegance",
       caption: "A timeless celebration of faith and blessed commitment",
     },
     {
       id: "hamza-areeba",
-      src: "/images/couple-hamza-areeba.jpg",
+      src: "/images/couple-hamza-areeba.webp",
       title: "Hamza & Areeba",
       caption: "Peaceful reflection and companionship in harmony",
     },
@@ -39,13 +39,13 @@ export const MomentsOfTogethernessSection: React.FC = () => {
     },
     {
       id: "zaid-hira",
-      src: "/images/couple-zaid-hira.jpg",
+      src: "/images/couple-zaid-hira.webp",
       title: "Zaid & Hira",
       caption: "Serene balcony view and lifelong partnership",
     },
     {
       id: "couple-sunset",
-      src: "/images/gallery-couple-sunset.jpg",
+      src: "/images/gallery-couple-sunset.webp",
       title: "Twilight Horizons",
       caption: "Looking forward together towards a blessed future",
     },
@@ -60,9 +60,10 @@ export const MomentsOfTogethernessSection: React.FC = () => {
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
         <div className="absolute right-0 top-0 w-full lg:w-[46%] h-full opacity-30 lg:opacity-70">
           <Image
-            src="/images/mosque-lantern-sunset.jpg"
+            src="/images/mosque-lantern-sunset.webp"
             alt="Majestic Mosque archway framing sunset minarets"
             fill
+            sizes="(max-width: 1024px) 100vw, 46vw"
             className="object-cover object-right"
             priority={false}
           />
@@ -212,14 +213,15 @@ export const MomentsOfTogethernessSection: React.FC = () => {
                 src={activePhoto.src}
                 alt={activePhoto.title}
                 fill
+                sizes="(max-width: 768px) 100vw, 672px"
                 className="object-cover object-center"
               />
             </div>
 
             <div className="p-5 sm:p-6 bg-[#171615] text-[#FAF7F2]">
-              <h4 className="text-lg sm:text-xl font-bold font-serif-luxury text-[#FFD78A] mb-1">
+              <h3 className="text-lg sm:text-xl font-bold font-serif-luxury text-[#FFD78A] mb-1">
                 {activePhoto.title}
-              </h4>
+              </h3>
               <p className="text-sm text-stone-200 font-sans-modern">
                 {activePhoto.caption}
               </p>

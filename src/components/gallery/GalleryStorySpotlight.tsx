@@ -53,9 +53,10 @@ export const GalleryStorySpotlight: React.FC = () => {
                 <div className="relative rounded-[5px] overflow-hidden border-2 border-[#b9965b]/40 shadow-xl bg-[#171615] aspect-[4/3] sm:aspect-[16/11] max-h-[340px] sm:max-h-[380px]">
                   <div ref={imageRef} className="relative w-full h-[115%] -top-[7%]">
                     <Image
-                      src="/images/muslim-wedding-couple.jpg"
-                      alt="Featured Couple - Zubair & Maryam"
+                      src="/images/muslim-wedding-couple.webp"
+                      alt="Bride and groom at a Nikah ceremony"
                       fill
+                      sizes="(max-width: 1024px) 100vw, 42vw"
                       className="object-cover object-center"
                     />
                   </div>

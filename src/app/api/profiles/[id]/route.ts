@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { dbService, isSupabaseConfigured } from "@/lib/supabase";
+import { dbService } from "@/lib/supabase";
 import { getCurrentAdmin } from "@/lib/auth";
 import { profileModerationSchema } from "@/lib/validations";
 
@@ -8,6 +8,15 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    // Profiles can hold private photos and guardian contact details — admin only.
+    const admin = await getCurrentAdmin();
+    if (!admin) {
+      return NextResponse.json(
+        { success: false, error: "Unauthorized: Admin session required" },
+        { status: 401 }
+      );
+    }
+
     const { id } = await params;
     const profile = await dbService.getProfileById(id);
 
@@ -37,7 +46,7 @@ export async function PATCH(
 ) {
   try {
     const admin = await getCurrentAdmin();
-    if (!admin && isSupabaseConfigured && process.env.NODE_ENV === "production") {
+    if (!admin) {
       return NextResponse.json(
         { success: false, error: "Unauthorized: Admin session required" },
         { status: 401 }
@@ -83,7 +92,7 @@ export async function DELETE(
 ) {
   try {
     const admin = await getCurrentAdmin();
-    if (!admin && isSupabaseConfigured && process.env.NODE_ENV === "production") {
+    if (!admin) {
       return NextResponse.json(
         { success: false, error: "Unauthorized: Admin session required" },
         { status: 401 }

@@ -1,10 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import { profileSchema } from "@/lib/validations";
 import { dbService } from "@/lib/supabase";
+import { getCurrentAdmin } from "@/lib/auth";
 import { Gender, MaritalStatus, ProfileFilter } from "@/types/database";
 
 export async function GET(request: NextRequest) {
   try {
+    // Biodata listings include pending/unapproved profiles and guardian contact
+    // details, so they are admin-only. Public visitors still submit via POST.
+    const admin = await getCurrentAdmin();
+    if (!admin) {
+      return NextResponse.json(
+        { success: false, error: "Unauthorized: Admin session required" },
+        { status: 401 }
+      );
+    }
+
     const { searchParams } = new URL(request.url);
 
     const filter: ProfileFilter = {

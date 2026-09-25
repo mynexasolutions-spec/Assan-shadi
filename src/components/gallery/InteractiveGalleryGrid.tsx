@@ -29,7 +29,7 @@ export interface GalleryItem {
 const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: "royal-nikah",
-    src: "/images/muslim-wedding-couple.jpg",
+    src: "/images/muslim-wedding-couple.webp",
     title: "Zubair & Maryam",
     caption:
       "A timeless celebration of faith, pure intentions, and sacred vows.",
@@ -40,7 +40,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: "ayaan-saba",
-    src: "/images/couple-ayaan-saba.jpg",
+    src: "/images/couple-ayaan-saba.webp",
     title: "Ayaan & Saba",
     caption: "Golden hour sunset vows and lifelong commitment.",
     category: "rings",
@@ -60,7 +60,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: "rings-henna",
-    src: "/images/gallery-mehndi-hands.jpg",
+    src: "/images/gallery-mehndi-hands.webp",
     title: "Sacred Rings & Promises",
     caption: "The beautiful pledge of togetherness and family blessings.",
     category: "rings",
@@ -70,7 +70,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: "hamza-areeba",
-    src: "/images/couple-hamza-areeba.jpg",
+    src: "/images/couple-hamza-areeba.webp",
     title: "Hamza & Areeba",
     caption: "Quiet companionship and mutual respect.",
     category: "walima",
@@ -80,7 +80,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: "zaid-hira",
-    src: "/images/couple-zaid-hira.jpg",
+    src: "/images/couple-zaid-hira.webp",
     title: "Zaid & Hira",
     caption: "Serene vows and embarking on life's journey.",
     category: "rings",
@@ -90,7 +90,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: "twilight-horizons",
-    src: "/images/gallery-couple-sunset.jpg",
+    src: "/images/gallery-couple-sunset.webp",
     title: "Twilight Horizons",
     caption: "Looking forward together towards a blessed future.",
     category: "walima",
@@ -100,7 +100,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: "mosque-arch-sunset",
-    src: "/images/mosque-arch-sunset.jpg",
+    src: "/images/mosque-arch-sunset.webp",
     title: "Sanctuary of Peace",
     caption: "Spiritual grounding before the Nikah congregation.",
     category: "nikah",
@@ -110,7 +110,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: "guidance-consultation",
-    src: "/images/expert-guidance-consultation.jpg",
+    src: "/images/expert-guidance-consultation.webp",
     title: "Relationship Supervisor Guidance",
     caption: "Families connecting with respect and transparency.",
     category: "nikah",
@@ -120,7 +120,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: "mosque-lantern-sunset",
-    src: "/images/mosque-lantern-sunset.jpg",
+    src: "/images/mosque-lantern-sunset.webp",
     title: "Light & Serenity",
     caption: "The radiant illumination of faith and marriage.",
     category: "rings",
@@ -129,6 +129,19 @@ const GALLERY_ITEMS: GalleryItem[] = [
     year: "2025",
   },
 ];
+
+const ITEM_ALT: Record<string, string> = {
+  "royal-nikah": "Bride and groom at a Nikah ceremony",
+  "ayaan-saba": "Couple at sunset",
+  "hero-wedding": "Bride and groom holding hands at a wedding",
+  "rings-henna": "Hands decorated with henna and wedding rings",
+  "hamza-areeba": "Bride and groom at a wedding reception",
+  "zaid-hira": "Bride and groom in a decorated hall",
+  "twilight-horizons": "Couple at twilight",
+  "mosque-arch-sunset": "Mosque arches at sunset",
+  "guidance-consultation": "Matrimonial advisor consulting with a couple",
+  "mosque-lantern-sunset": "Mosque at sunset with a glowing lantern",
+};
 
 type CategoryFilter = "all" | "nikah" | "walima" | "rings";
 
@@ -287,7 +300,7 @@ export const InteractiveGalleryGrid: React.FC = () => {
               <div className="relative w-full aspect-[1/1] overflow-hidden">
                 <Image
                   src={item.src}
-                  alt={item.title}
+                  alt={ITEM_ALT[item.id] ?? "Matrimonial celebration photograph"}
                   fill
                   className="object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-108"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
@@ -373,8 +386,9 @@ export const InteractiveGalleryGrid: React.FC = () => {
                 <div className="relative w-full h-full rounded-[5px] overflow-hidden">
                   <Image
                     src={currentPhoto.src}
-                    alt={currentPhoto.title}
+                    alt={ITEM_ALT[currentPhoto.id] ?? "Matrimonial celebration photograph"}
                     fill
+                    sizes="100vw"
                     className="object-cover object-center rounded-[5px]"
                     priority
                   />

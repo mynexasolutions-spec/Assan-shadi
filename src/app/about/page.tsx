@@ -1,4 +1,6 @@
 import React from "react";
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 import { AboutPageHeader } from "@/components/about/AboutPageHeader";
 import { WhoWeAreStorySection } from "@/components/about/WhoWeAreStorySection";
 import { IntentionVisionMissionSection } from "@/components/about/IntentionVisionMissionSection";
@@ -7,11 +9,12 @@ import { TwelveReasonsSection } from "@/components/about/TwelveReasonsSection";
 import { PersonalizedSupervisorSection } from "@/components/about/PersonalizedSupervisorSection";
 import { AboutFinalCtaSection } from "@/components/about/AboutFinalCtaSection";
 
-export const metadata = {
-  title: "Who We Are & About Us | Asaan Shaadi Matrimonial Foundation",
+export const metadata: Metadata = buildMetadata({
+  title: "About Us – Muslim Matrimonial Service in Bengaluru",
   description:
-    "Learn about Asaan Shaadi — Bengaluru-founded registered matrimonial service. Discover our intention, vision, mission, and 12 reasons why singles choose our verified matchmaking platform.",
-};
+    "Asaan Shaadi helps families find a Muslim rishta in Bangalore — a Bengaluru matrimonial service with guardian-verified biodatas and dowry-free Nikah.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

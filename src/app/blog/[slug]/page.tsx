@@ -1,8 +1,8 @@
-import React from "react";
+import React, { cache } from "react";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { Metadata } from "next";
 import {
   Home,
   ChevronRight,
@@ -20,15 +20,43 @@ import {
   BLOG_POSTS,
   getBlogPostBySlug,
   getRelatedBlogPosts,
+  type BlogPost as ContentBlogPost,
 } from "@/data/blogData";
 import { BlogCard } from "@/components/blog/BlogCard";
 import { ShareButtons } from "@/components/blog/ShareButtons";
+import { buildMetadata } from "@/lib/seo";
+import { SITE_URL } from "@/lib/site";
+import { dbService } from "@/lib/supabase";
+
+const FALLBACK_POST_IMAGE = "/images/hero-wedding-couple.webp";
+
+export const revalidate = 3600;
 
 interface SingleBlogPageProps {
   params: Promise<{
     slug: string;
   }>;
 }
+
+const getPost = cache(async (slug: string): Promise<ContentBlogPost | null> => {
+  // Read admin-published posts from Supabase first, then fall back to the
+  // static blogData content so sitemap slugs and rendered pages always match.
+  try {
+    const dbPost = await dbService.getBlogById(slug);
+    if (dbPost && dbPost.status !== "draft") {
+      return dbPost as unknown as ContentBlogPost;
+    }
+  } catch {
+    // fall through to static content
+  }
+  return getBlogPostBySlug(slug) ?? null;
+});
+
+const toIso = (value?: string): string | undefined => {
+  if (!value) return undefined;
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? undefined : date.toISOString();
+};
 
 export async function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({
@@ -40,28 +68,28 @@ export async function generateMetadata({
   params,
 }: SingleBlogPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  const post = await getPost(slug);
 
   if (!post) {
     return {
-      title: "Article Not Found | Asaan Shaadi",
+      title: "Article Not Found",
+      robots: { index: false, follow: false },
     };
   }
 
-  return {
-    title: `${post.title} — Asaan Shaadi Blog`,
-    description: post.excerpt,
-    openGraph: {
-      title: post.title,
-      description: post.excerpt,
-      images: [{ url: post.imageUrl }],
-    },
-  };
+  return buildMetadata({
+    title: post.title,
+    description: post.excerpt.slice(0, 160),
+    path: `/blog/${post.slug}`,
+    image: post.imageUrl || FALLBACK_POST_IMAGE,
+    type: "article",
+    publishedTime: toIso(post.publishedAt),
+  });
 }
 
 export default async function SingleBlogPage({ params }: SingleBlogPageProps) {
   const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  const post = await getPost(slug);
 
   if (!post) {
     notFound();
@@ -69,8 +97,48 @@ export default async function SingleBlogPage({ params }: SingleBlogPageProps) {
 
   const relatedPosts = getRelatedBlogPosts(post.slug, 3);
 
+  const postUrl = `${SITE_URL}/blog/${post.slug}`;
+  const publishedTime = toIso(post.publishedAt);
+  const heroImage = post.imageUrl || FALLBACK_POST_IMAGE;
+  const blogPostingJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    image: heroImage,
+    ...(publishedTime ? { datePublished: publishedTime } : {}),
+    author: post.author?.name
+      ? { "@type": "Person", name: post.author.name }
+      : { "@id": `${SITE_URL}/#organization` },
+    publisher: { "@id": `${SITE_URL}/#organization` },
+    mainEntityOfPage: postUrl,
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: `${SITE_URL}/blog`,
+      },
+      { "@type": "ListItem", position: 3, name: post.title, item: postUrl },
+    ],
+  };
+
   return (
     <article className="min-h-screen bg-[#252525] text-[#FAF7F2]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
       {/* 1. Top Mini-Header / Breadcrumbs Banner */}
       <section className="relative min-h-[70px] sm:min-h-[100px] py-3 sm:py-0 w-full bg-[#1e1e1e] border-b border-[#9a6a4f]/30 flex items-center overflow-hidden z-20">
         <div className="absolute inset-0 pointer-events-none">
@@ -157,6 +225,7 @@ export default async function SingleBlogPage({ params }: SingleBlogPageProps) {
                   src={post.author.avatar}
                   alt={post.author.name}
                   fill
+                  sizes="48px"
                   className="object-cover"
                 />
               </div>
@@ -169,14 +238,14 @@ export default async function SingleBlogPage({ params }: SingleBlogPageProps) {
             </div>
 
             {/* Social Share Buttons */}
-            <ShareButtons title={post.title} />
+            <ShareButtons title={post.title} url={postUrl} />
           </div>
         </header>
 
         {/* Featured Main Image */}
         <div className="my-6 sm:my-10 relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-stone-900">
           <Image
-            src={post.imageUrl}
+            src={heroImage}
             alt={post.title}
             fill
             priority
@@ -212,7 +281,7 @@ export default async function SingleBlogPage({ params }: SingleBlogPageProps) {
 
         {/* Article Body Sections */}
         <section className="space-y-6 sm:space-y-10 text-stone-300 font-sans-modern leading-relaxed text-sm sm:text-base">
-          {post.sections.map((section, idx) => (
+          {(post.sections ?? []).map((section, idx) => (
             <div key={idx} className="space-y-3 sm:space-y-4">
               {section.heading && (
                 <h2 className="text-lg sm:text-2xl md:text-3xl font-bold font-serif-luxury text-[#FAF7F2] tracking-tight pt-1 sm:pt-2 flex items-center gap-2 sm:gap-2.5">
@@ -257,7 +326,7 @@ export default async function SingleBlogPage({ params }: SingleBlogPageProps) {
         {/* Article Tags */}
         <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 py-4 sm:py-6 border-t border-white/10">
           <span className="text-xs text-stone-400 mr-1.5">Tags:</span>
-          {post.tags.map((tag) => (
+          {(post.tags ?? []).map((tag) => (
             <Link
               key={tag}
               href={`/blog`}
@@ -275,6 +344,7 @@ export default async function SingleBlogPage({ params }: SingleBlogPageProps) {
               src={post.author.avatar}
               alt={post.author.name}
               fill
+              sizes="64px"
               className="object-cover"
             />
           </div>

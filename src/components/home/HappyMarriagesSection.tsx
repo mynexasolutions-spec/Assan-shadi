@@ -11,8 +11,8 @@ export const HappyMarriagesSection: React.FC = () => {
   const stories = [
     {
       id: "ayaan-saba",
-      image: "/images/couple-ayaan-saba.jpg",
-      alt: "Ayaan and Saba blessed marriage story",
+      image: "/images/couple-ayaan-saba.webp",
+      alt: "Bride and groom at a wedding celebration",
       quote:
         "“Asaan Shaadi made our journey simple and blessed. We found not just a partner, but a true companion in faith and life. The wali verification gave both our families complete reassurance.”",
       author: "Ayaan & Saba",
@@ -22,8 +22,8 @@ export const HappyMarriagesSection: React.FC = () => {
     },
     {
       id: "hamza-areeba",
-      image: "/images/couple-hamza-areeba.jpg",
-      alt: "Hamza and Areeba blessed marriage story",
+      image: "/images/couple-hamza-areeba.webp",
+      alt: "Bride and groom at a wedding reception",
       quote:
         "“A trusted platform with genuine profiles. Zero commercial exploitation and 100% family dignity. Alhamdulillah, we are happily married and grateful for this noble sunnah initiative.”",
       author: "Hamza & Areeba",
@@ -33,8 +33,8 @@ export const HappyMarriagesSection: React.FC = () => {
     },
     {
       id: "zaid-hira",
-      image: "/images/couple-zaid-hira.jpg",
-      alt: "Zaid and Hira blessed marriage story",
+      image: "/images/couple-zaid-hira.webp",
+      alt: "Bride and groom in a decorated hall",
       quote:
         "“It felt different here — more dignified, more peaceful, and completely free from dowry culture. Strict photo privacy and respectful family interaction throughout the process.”",
       author: "Zaid & Hira",
@@ -44,8 +44,8 @@ export const HappyMarriagesSection: React.FC = () => {
     },
     {
       id: "bilal-zainab",
-      image: "/images/muslim-wedding-couple.jpg",
-      alt: "Bilal and Zainab blessed marriage story",
+      image: "/images/muslim-wedding-couple.webp",
+      alt: "Bride and groom at a Nikah ceremony",
       quote:
         "“Finding a compatible practicing spouse with mutual family respect was seamless on Asaan Shaadi. The personalized guidance helped both our families coordinate with utmost ease.”",
       author: "Bilal & Zainab",
@@ -56,7 +56,7 @@ export const HappyMarriagesSection: React.FC = () => {
     {
       id: "farhan-maryam",
       image: "/images/hero-wedding-couple.webp",
-      alt: "Farhan and Maryam blessed marriage story",
+      alt: "Bride and groom holding hands at a wedding",
       quote:
         "“What stood out most was the dignified approach. No superficial swiping or spam calls. Both families met with pure intentions, and Allah SWT blessed our marriage with barakah.”",
       author: "Farhan & Maryam",
@@ -66,8 +66,8 @@ export const HappyMarriagesSection: React.FC = () => {
     },
     {
       id: "usman-fatima",
-      image: "/images/gallery-couple-sunset.jpg",
-      alt: "Usman and Fatima blessed marriage story",
+      image: "/images/gallery-couple-sunset.webp",
+      alt: "Couple at twilight",
       quote:
         "“SubhanAllah, the entire process was seamless. From verified biodatas to clear communication, Asaan Shaadi brings back purity and honor to Muslim matrimonial matchmaking.”",
       author: "Usman & Fatima",

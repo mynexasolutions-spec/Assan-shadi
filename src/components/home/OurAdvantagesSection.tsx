@@ -496,9 +496,10 @@ export const OurAdvantagesSection: React.FC = () => {
           className="absolute right-0 top-0 w-full lg:w-[54%] h-full opacity-35 lg:opacity-80 will-change-transform"
         >
           <Image
-            src="/images/mosque-lantern-sunset.jpg"
+            src="/images/mosque-lantern-sunset.webp"
             alt="Sheikh Zayed Grand Mosque sunset with glowing Arabic lantern"
             fill
+            sizes="(max-width: 1024px) 100vw, 54vw"
             className="object-cover object-right"
           />
           {/* Seamless Luxury Vignette Blend */}

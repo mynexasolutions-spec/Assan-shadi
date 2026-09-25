@@ -3,11 +3,14 @@ import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { AdminUser } from "@/types/database";
 
-const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || "assan_shadi_secure_super_secret_jwt_key_2026"
-);
+export { AUTH_COOKIE_NAME } from "@/lib/auth-constants";
+import { AUTH_COOKIE_NAME } from "@/lib/auth-constants";
 
-export const AUTH_COOKIE_NAME = "as_admin_token";
+function getJwtSecretKey(): Uint8Array | null {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) return null;
+  return new TextEncoder().encode(secret);
+}
 
 export async function hashPassword(password: string): Promise<string> {
   const salt = await bcrypt.genSalt(10);
@@ -19,6 +22,12 @@ export async function verifyPassword(password: string, hash: string): Promise<bo
 }
 
 export async function createSessionToken(user: AdminUser): Promise<string> {
+  const secret = getJwtSecretKey();
+  if (!secret) {
+    throw new Error(
+      "JWT_SECRET is not set. Set the JWT_SECRET environment variable before issuing admin sessions."
+    );
+  }
   return new SignJWT({
     sub: user.id,
     email: user.email,
@@ -28,12 +37,14 @@ export async function createSessionToken(user: AdminUser): Promise<string> {
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
     .setExpirationTime("7d")
-    .sign(JWT_SECRET);
+    .sign(secret);
 }
 
 export async function verifySessionToken(token: string): Promise<AdminUser | null> {
+  const secret = getJwtSecretKey();
+  if (!secret) return null;
   try {
-    const { payload } = await jwtVerify(token, JWT_SECRET);
+    const { payload } = await jwtVerify(token, secret);
     if (!payload || !payload.sub || !payload.email) return null;
 
     return {
@@ -42,7 +53,7 @@ export async function verifySessionToken(token: string): Promise<AdminUser | nul
       name: (payload.name as string) || "Admin",
       role: (payload.role as "superadmin" | "moderator") || "moderator",
     };
-  } catch (error) {
+  } catch {
     return null;
   }
 }

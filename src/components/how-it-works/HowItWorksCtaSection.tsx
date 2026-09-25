@@ -41,9 +41,10 @@ export const HowItWorksCtaSection: React.FC = () => {
           {/* Background Couple Watermark */}
           <div className="absolute right-0 bottom-0 top-0 w-1/3 opacity-40 pointer-events-none hidden lg:block overflow-hidden">
             <Image
-              src="/images/couple-ayaan-saba.jpg"
-              alt="Happy Couple Watermark"
+              src="/images/couple-ayaan-saba.webp"
+              alt=""
               fill
+              sizes="33vw"
               className="object-cover object-center"
             />
           </div>
@@ -71,7 +72,14 @@ export const HowItWorksCtaSection: React.FC = () => {
                   Finding the right life partner is an important decision. Asaan Shaadi makes your search simple, comfortable, and meaningful with verified profiles and guardian respect.
                 </p>
                 <p>
-                  Explore profiles based on your preferences, lifestyle, and faith, and take the first step toward finding your ideal life partner today.
+                  Explore profiles based on your preferences, lifestyle, and faith, and take the first step toward finding your ideal life partner today. Have a question first?{" "}
+                  <Link
+                    href="/contact"
+                    className="text-[#e8c078] underline underline-offset-4 hover:text-[#FFD78A]"
+                  >
+                    Contact our team
+                  </Link>
+                  .
                 </p>
               </div>
             </ScrollReveal>

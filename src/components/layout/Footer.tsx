@@ -1,7 +1,9 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { BUSINESS } from "@/lib/site";
 import {
   ShieldCheck,
   Lock,
@@ -23,23 +25,15 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-5 space-y-5">
             {/* Logo Lockup */}
             <Link href="/" className="inline-flex items-center gap-3.5 group">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#4a362a] via-[#33241b] to-[#1e1511] border border-[#B9965B]/40 flex items-center justify-center text-[#B9965B] shadow-lg group-hover:border-[#B9965B] group-hover:scale-105 transition-all duration-300">
-                {/* Handshake Heart Icon */}
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="w-7 h-7 text-[#B9965B]"
-                >
-                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-                  <path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66" />
-                  <path d="m18 15-2-2" />
-                  <path d="m15 18-2-2" />
-                </svg>
-              </div>
+              <span className="inline-flex items-center justify-center rounded-2xl bg-gradient-to-br from-[#FFFDF9] to-[#F1E0C0] p-2.5 ring-1 ring-[#B9965B]/50 shadow-lg transition-transform duration-300 group-hover:scale-105">
+                <Image
+                  src="/images/logo-mark.png"
+                  alt=""
+                  width={512}
+                  height={512}
+                  className="h-10 w-10 sm:h-11 sm:w-11 object-contain"
+                />
+              </span>
 
               <div className="flex flex-col">
                 <span className="text-2xl sm:text-[28px] font-bold font-serif-luxury tracking-tight text-[#FAF7F2] group-hover:text-[#FFD78A] transition-colors leading-none">
@@ -73,7 +67,7 @@ export const Footer: React.FC = () => {
             <div className="flex items-center gap-3 pt-2">
               {/* WhatsApp (Green Button) */}
               <a
-                href="https://wa.me/919845012439"
+                href={BUSINESS.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Chat on WhatsApp"
@@ -90,7 +84,7 @@ export const Footer: React.FC = () => {
 
               {/* Phone Direct */}
               <a
-                href="tel:+919845012439"
+                href={BUSINESS.telephoneHref}
                 aria-label="Call Us"
                 className="w-10 h-10 rounded-full border border-white/15 bg-white/5 hover:border-[#B9965B] hover:bg-[#B9965B]/15 text-[#FAF7F2]/80 hover:text-[#B9965B] flex items-center justify-center transition-all duration-300 hover:scale-105"
               >
@@ -98,6 +92,7 @@ export const Footer: React.FC = () => {
               </a>
 
               {/* Instagram */}
+              {/* TODO(owner): replace with the real Instagram profile URL */}
               <a
                 href="https://instagram.com"
                 target="_blank"
@@ -121,6 +116,7 @@ export const Footer: React.FC = () => {
               </a>
 
               {/* Facebook */}
+              {/* TODO(owner): replace with the real Facebook profile URL */}
               <a
                 href="https://facebook.com"
                 target="_blank"
@@ -216,9 +212,9 @@ export const Footer: React.FC = () => {
                   <p className="text-xs font-semibold text-[#B9965B] tracking-wide uppercase">
                     Address
                   </p>
-                  <p className="text-xs sm:text-sm text-[#FAF7F2]/75 leading-relaxed">
-                    B &apos;Surya Enclave Apartment, 8th Main, BTM Layout 1st Stage, Bengaluru - 560029, Karnataka, India
-                  </p>
+                  <address className="not-italic text-xs sm:text-sm text-[#FAF7F2]/75 leading-relaxed">
+                    {BUSINESS.addressDisplay}
+                  </address>
                 </div>
               </div>
 
@@ -232,10 +228,10 @@ export const Footer: React.FC = () => {
                     Phone
                   </p>
                   <a
-                    href="tel:+919845012439"
+                    href={BUSINESS.telephoneHref}
                     className="text-xs sm:text-sm text-[#FAF7F2]/75 hover:text-[#B9965B] transition-colors block leading-relaxed"
                   >
-                    +91 98450 12439
+                    {BUSINESS.telephoneDisplay}
                   </a>
                 </div>
               </div>
@@ -250,10 +246,10 @@ export const Footer: React.FC = () => {
                     Email Us
                   </p>
                   <a
-                    href="mailto:info@asaanshaadi.com"
+                    href={`mailto:${BUSINESS.email}`}
                     className="text-xs sm:text-sm text-[#FAF7F2]/75 hover:text-[#B9965B] transition-colors block leading-relaxed break-all"
                   >
-                    info@asaanshaadi.com
+                    {BUSINESS.email}
                   </a>
                 </div>
               </div>

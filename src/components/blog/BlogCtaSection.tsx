@@ -49,7 +49,7 @@ export const BlogCtaSection: React.FC = () => {
             </Link>
 
             <Link
-              href="/about"
+              href="/how-it-works"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 sm:py-3.5 rounded-full bg-white/5 hover:bg-white/10 text-stone-200 border border-white/15 text-xs sm:text-sm transition-colors"
             >
               <span>How It Works</span>

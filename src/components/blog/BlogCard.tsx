@@ -92,6 +92,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
                 src={post.author.avatar}
                 alt={post.author.name}
                 fill
+                sizes="32px"
                 className="object-cover"
               />
             </div>

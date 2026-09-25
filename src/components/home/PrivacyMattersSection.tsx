@@ -45,9 +45,10 @@ export const PrivacyMattersSection: React.FC = () => {
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
         <div className="absolute right-0 top-0 w-full lg:w-[50%] h-full opacity-35 lg:opacity-75">
           <Image
-            src="/images/mosque-arch-sunset.jpg"
+            src="/images/mosque-arch-sunset.webp"
             alt="Majestic Mosque arches and courtyard at sunset"
             fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover object-right"
             priority={false}
           />

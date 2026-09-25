@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { HeroSection } from "@/components/home/HeroSection";
 import { TrustedMatchmakingSection } from "@/components/home/TrustedMatchmakingSection";
 import { JourneyToNikahSection } from "@/components/home/JourneyToNikahSection";
@@ -10,12 +11,34 @@ import { MomentsOfTogethernessSection } from "@/components/home/MomentsOfTogethe
 import { PersonalizedMatchmakingSection } from "@/components/home/PersonalizedMatchmakingSection";
 import { BiodataSection } from "@/components/home/BiodataSection";
 import { BeginYourJourneySection } from "@/components/home/BeginYourJourneySection";
+import { buildMetadata } from "@/lib/seo";
+import { SITE_DESCRIPTION } from "@/lib/site";
+import { HOME_FAQS } from "@/data/faqs";
 
-export const dynamic = "force-dynamic";
+export const metadata: Metadata = buildMetadata({
+  title: "Asaan Shaadi | Simple, Verified Muslim Matrimony in Bengaluru",
+  description: SITE_DESCRIPTION,
+  path: "/",
+  absoluteTitle: true,
+});
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: HOME_FAQS.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
 
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       {/* 1. Luxury Hero & Search */}
       <HeroSection />
 

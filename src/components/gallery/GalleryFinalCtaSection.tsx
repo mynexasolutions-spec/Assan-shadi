@@ -42,8 +42,9 @@ export const GalleryFinalCtaSection: React.FC = () => {
           <div className="absolute right-0 bottom-0 top-0 w-1/3 opacity-40 pointer-events-none hidden lg:block overflow-hidden">
             <Image
               src="/images/hero-wedding-couple.webp"
-              alt="Happy Wedding Couple Watermark"
+              alt=""
               fill
+              sizes="33vw"
               className="object-cover object-center"
             />
           </div>

@@ -12,25 +12,25 @@ export const TrustedMatchmakingSection: React.FC = () => {
       id: "verified-profiles",
       title: "Verified Profiles",
       desc: "Manually checked with phone verification.",
-      image: "/images/Trusted_Matchmaking/img_01.png",
+      image: "/images/Trusted_Matchmaking/img_01.webp",
     },
     {
       id: "genuine-members",
       title: "Genuine Members",
       desc: "Serious individuals and families only.",
-      image: "/images/Trusted_Matchmaking/img_02.png",
+      image: "/images/Trusted_Matchmaking/img_02.webp",
     },
     {
       id: "islamic-values",
       title: "Islamic Values",
       desc: "Built on trust, respect and shared deen.",
-      image: "/images/Trusted_Matchmaking/img_03.png",
+      image: "/images/Trusted_Matchmaking/img_03.webp",
     },
     {
       id: "safe-private",
       title: "Safe & Private",
       desc: "Your information stays confidential.",
-      image: "/images/Trusted_Matchmaking/img_04.png",
+      image: "/images/Trusted_Matchmaking/img_04.webp",
     },
   ];
 

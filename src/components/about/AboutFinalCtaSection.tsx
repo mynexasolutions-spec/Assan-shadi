@@ -42,9 +42,10 @@ export const AboutFinalCtaSection: React.FC = () => {
           {/* Background Couple Silhouette Watermark */}
           <div className="absolute right-0 bottom-0 top-0 w-1/3 opacity-50 pointer-events-none hidden lg:block overflow-hidden">
             <Image
-              src="/images/couple-zaid-hira.jpg"
-              alt="Happy Couple Watermark"
+              src="/images/couple-zaid-hira.webp"
+              alt=""
               fill
+              sizes="33vw"
               className="object-cover object-center"
             />
           </div>
@@ -79,7 +80,21 @@ export const AboutFinalCtaSection: React.FC = () => {
                 <p>              
                   Explore profiles based on your preferences, lifestyle, and
                   faith, and take the first step toward finding your ideal life
-                  partner.
+                  partner. You can also see{" "}
+                  <Link
+                    href="/how-it-works"
+                    className="text-[#e8c078] underline underline-offset-4 hover:text-[#FFD78A]"
+                  >
+                    how guardian verification works
+                  </Link>{" "}
+                  or{" "}
+                  <Link
+                    href="/contact"
+                    className="text-[#e8c078] underline underline-offset-4 hover:text-[#FFD78A]"
+                  >
+                    visit our BTM Layout office
+                  </Link>
+                  .
                 </p>
               </div>
             </ScrollReveal>

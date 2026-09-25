@@ -13,77 +13,13 @@ import {
   Sparkles,
   CheckCircle2,
 } from "lucide-react";
-
-interface FaqItem {
-  id: string;
-  category: "general" | "privacy" | "verification" | "pricing";
-  question: string;
-  answer: string;
-  badge?: string;
-}
+import { HOME_FAQS } from "@/data/faqs";
 
 export const FaqSection: React.FC = () => {
   const [openId, setOpenId] = useState<string>("faq-1");
   const [activeTab, setActiveTab] = useState<string>("all");
 
-  const faqs: FaqItem[] = [
-    {
-      id: "faq-1",
-      category: "general",
-      question: "How is Asaan Shaadi different from conventional matchmaking apps?",
-      answer:
-        "Asaan Shaadi is built strictly upon Islamic values and family honor. We eliminate casual dating behavior, superficial swiping, and fake profiles. Every profile is manually reviewed, guardian (Wali) involvement is prioritized, and our entire process is designed with the sole intention of facilitating a blessed, honorable Nikah.",
-      badge: "Dignified & Trusted",
-    },
-    {
-      id: "faq-2",
-      category: "privacy",
-      question: "Can I keep photographs and personal contact numbers private?",
-      answer:
-        "Yes, absolutely. We offer 100% photo privacy controls, especially for sisters and private families. You can choose to keep your photo visible only to verified profiles with whom you have mutually agreed to connect. Furthermore, contact information is never made public — it is shared solely after mutual guardian consent.",
-      badge: "100% Private",
-    },
-    {
-      id: "faq-3",
-      category: "verification",
-      question: "How are candidate biodatas and profiles verified?",
-      answer:
-        "Our dedicated verification team manually inspects every submission. We verify candidate phone numbers via WhatsApp/SMS, confirm primary guardian details, and screen educational and professional credentials. Unverified or suspicious accounts are immediately rejected.",
-      badge: "Manual Review",
-    },
-    {
-      id: "faq-4",
-      category: "pricing",
-      question: "Do you charge expensive commissions after Nikah?",
-      answer:
-        "We believe in complete transparency and clarity. We charge a registration fee initially upon signup, and when the marriage is successfully fixed, a mutually agreed predetermined fixed amount is charged as discussed with the family. There are no hidden fees or exorbitant percentage-based broker commissions.",
-      badge: "Transparent Pricing",
-    },
-    {
-      id: "faq-5",
-      category: "general",
-      question: "Can families from all cities and states in India find a match?",
-      answer:
-        "Yes, absolutely! Asaan Shaadi serves Muslim families across all states and major cities in India—including Bengaluru, Hyderabad, Mumbai, Delhi NCR, Chennai, Pune, Kolkata, Lucknow, and more. We also assist Indian NRI families seeking compatible, practicing matches within India.",
-      badge: "All India",
-    },
-    {
-      id: "faq-6",
-      category: "privacy",
-      question: "Who should create the profile — the candidate or the guardian?",
-      answer:
-        "Either can register! Most profiles on Asaan Shaadi are managed collaboratively by parents, guardians (Wali), or the candidates themselves. We mandate a verified guardian phone number so that respectable families can connect with complete reassurance.",
-      badge: "Family First",
-    },
-    {
-      id: "faq-7",
-      category: "general",
-      question: "What is the difference between Self-Service and Personalized Matchmaking?",
-      answer:
-        "Self-Service lets you browse, filter, and express interest in verified biodatas yourself. Our Personalized Matchmaking VIP service assigns a dedicated senior Matchmaker who personally handpicks compatible matches, coordinates family introductions, and facilitates respectful meetings.",
-      badge: "VIP Service",
-    },
-  ];
+  const faqs = HOME_FAQS;
 
   const categories = [
     { id: "all", label: "All Questions" },

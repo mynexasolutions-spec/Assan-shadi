@@ -284,9 +284,10 @@ export const BiodataSection: React.FC = () => {
                   {/* Compact Image Container with reduced height */}
                   <div className="relative rounded-[10px] overflow-hidden border-2 border-[#b9965b]/50 shadow-2xl bg-[#171615] aspect-[16/10] sm:aspect-[16/10] lg:aspect-[4/3] max-h-[260px] sm:max-h-[300px] lg:max-h-[320px] w-full">
                     <Image
-                      src="/images/couple-ayaan-saba.jpg"
-                      alt="Muslim Couple at Grand Mosque Sunset - Asaan Shaadi"
+                      src="/images/couple-ayaan-saba.webp"
+                      alt="Couple at a mosque at sunset"
                       fill
+                      sizes="(max-width: 1024px) 100vw, 42vw"
                       className="object-cover object-center transform hover:scale-105 transition-transform duration-700"
                     />
 

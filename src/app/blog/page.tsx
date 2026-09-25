@@ -1,14 +1,17 @@
 import React from "react";
-import { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 import { BlogPageHeader } from "@/components/blog/BlogPageHeader";
 import { BlogListSection } from "@/components/blog/BlogListSection";
 import { BlogCtaSection } from "@/components/blog/BlogCtaSection";
 
-export const metadata: Metadata = {
-  title: "Insights for a Happy Marriage — Nikah Guidance | Asaan Shaadi",
+export const metadata = buildMetadata({
+  title: "Nikah & Happy Marriage Guidance Blog",
   description:
-    "Explore authentic Sunnah advice, pre-marital compatibility guides, relationship wisdom, and budget-friendly wedding insights for a blessed Islamic marriage.",
-};
+    "Practical Sunnah-based guidance on Nikah, pre-marital compatibility, family relationships and budget-friendly weddings for a blessed Islamic marriage.",
+  path: "/blog",
+});
+
+export const revalidate = 3600;
 
 export default function BlogPage() {
   return (

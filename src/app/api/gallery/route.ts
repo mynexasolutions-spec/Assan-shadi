@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { dbService } from "@/lib/supabase";
 import { getCurrentAdmin } from "@/lib/auth";
+
+function revalidateGallery() {
+  revalidatePath("/gallery");
+  revalidatePath("/");
+}
 
 export async function GET() {
   try {
@@ -54,6 +60,8 @@ export async function POST(request: NextRequest) {
       year: body.year?.trim() || new Date().getFullYear().toString(),
     });
 
+    revalidateGallery();
+
     return NextResponse.json(
       {
         success: true,
@@ -97,6 +105,8 @@ export async function PATCH(request: NextRequest) {
       );
     }
 
+    revalidateGallery();
+
     return NextResponse.json({
       success: true,
       message: "Media item updated successfully",
@@ -137,6 +147,8 @@ export async function DELETE(request: NextRequest) {
         { status: 404 }
       );
     }
+
+    revalidateGallery();
 
     return NextResponse.json({
       success: true,

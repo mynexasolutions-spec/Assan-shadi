@@ -129,9 +129,10 @@ export const WhoWeAreStorySection: React.FC = () => {
                 {/* Main Couple Image Container */}
                 <div className="relative rounded-2xl overflow-hidden border-2 border-[#b9965b]/40 shadow-2xl bg-[#1e1e1e] aspect-[4/5]">
                   <Image
-                    src="/images/muslim-wedding-couple.jpg"
-                    alt="Happy Muslim Couple on Wedding Day - Asaan Shaadi"
+                    src="/images/muslim-wedding-couple.webp"
+                    alt="Bride and groom on their wedding day"
                     fill
+                    sizes="(max-width: 1024px) 100vw, 42vw"
                     className="object-cover object-center transform hover:scale-105 transition-transform duration-700 ease-out"
                     priority
                   />

@@ -29,9 +29,10 @@ export const WhatKeepsUsGoingSection: React.FC = () => {
                 {/* Main Card */}
                 <div className="relative rounded-2xl overflow-hidden border-2 border-[#b9965b]/40 shadow-2xl bg-[#1e1e1e] aspect-[4/5]">
                   <Image
-                    src="/images/couple-ayaan-saba.jpg"
-                    alt="Happy Married Couple - Asaan Shaadi Matrimony"
+                    src="/images/couple-ayaan-saba.webp"
+                    alt="Muslim bride and groom at a wedding celebration"
                     fill
+                    sizes="(max-width: 1024px) 100vw, 42vw"
                     className="object-cover object-center transform hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/30 to-transparent" />

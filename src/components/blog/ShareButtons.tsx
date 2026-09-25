@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Share2, Check, Copy, MessageCircle } from "lucide-react";
+import { SITE_URL } from "@/lib/site";
 
 interface ShareButtonsProps {
   title: string;
@@ -15,7 +16,7 @@ export const ShareButtons: React.FC<ShareButtonsProps> = ({ title, url }) => {
     if (typeof window !== "undefined") {
       return url || window.location.href;
     }
-    return url || "https://asaanshaadi.com/blog";
+    return url || `${SITE_URL}/blog`;
   };
 
   const handleCopyLink = async () => {

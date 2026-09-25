@@ -3,34 +3,9 @@
 import React, { useState } from "react";
 import { HelpCircle, ChevronDown, Sparkles } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { HOW_IT_WORKS_FAQS } from "@/data/faqs";
 
-const FAQS = [
-  {
-    id: "verify",
-    q: "How does Asaan Shaadi verify candidates and guardians?",
-    a: "Our moderation team manually verifies contact numbers and candidate credentials before marking any profile as verified. This ensures serious individuals and legitimate guardians on our platform.",
-  },
-  {
-    id: "photo",
-    q: "Can I keep my daughter's or my own photograph private?",
-    a: "Yes. You can toggle photo privacy during registration. Your photo will remain safely blurred and will only be revealed with your explicit consent to genuine, verified matches.",
-  },
-  {
-    id: "fees",
-    q: "What is your fee and payment structure?",
-    a: "We charge an initial registration fee, and upon successful marriage settlement (marriage fix time), a predetermined mutually agreed fixed amount is charged. Everything is discussed transparently upfront.",
-  },
-  {
-    id: "supervisor",
-    q: "What is the role of an assigned Marriage Supervisor?",
-    a: "An expert supervisor assists with background verification, liaises between prospective families, arranges introductory chats/video calls, and coordinates the first respectful meeting.",
-  },
-  {
-    id: "pre-chat",
-    q: "Can candidates talk or video call before the first physical meeting?",
-    a: "Yes. We support respectful introductory text and video interactions to help both candidates overcome anxiety and establish mutual compatibility before formal family meetings.",
-  },
-];
+const FAQS = HOW_IT_WORKS_FAQS;
 
 export const HowItWorksFaqSection: React.FC = () => {
   const [openId, setOpenId] = useState<string | null>("verify");
@@ -87,7 +62,7 @@ export const HowItWorksFaqSection: React.FC = () => {
                     className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 transition-colors"
                   >
                     <span className="text-sm sm:text-base font-bold font-serif-luxury text-[#FAF7F2]">
-                      {faq.q}
+                      {faq.question}
                     </span>
                     <div
                       className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 border transition-transform duration-300 ${
@@ -100,11 +75,13 @@ export const HowItWorksFaqSection: React.FC = () => {
                     </div>
                   </button>
 
-                  {isOpen && (
-                    <div className="px-5 pb-5 sm:px-6 sm:pb-6 pt-0 text-xs sm:text-sm text-stone-300 font-sans-modern leading-relaxed border-t border-white/5 animate-fadeIn">
-                      {faq.a}
-                    </div>
-                  )}
+                  <div
+                    className={`px-5 pb-5 sm:px-6 sm:pb-6 pt-0 text-xs sm:text-sm text-stone-300 font-sans-modern leading-relaxed border-t border-white/5 ${
+                      isOpen ? "block animate-fadeIn" : "hidden"
+                    }`}
+                  >
+                    {faq.answer}
+                  </div>
                 </div>
               </ScrollReveal>
             );

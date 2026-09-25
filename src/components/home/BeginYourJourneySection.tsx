@@ -36,7 +36,7 @@ export const BeginYourJourneySection: React.FC = () => {
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
         <div className="absolute right-0 top-0 w-full lg:w-[48%] h-full opacity-25 lg:opacity-90">
           <Image
-            src="/images/couple-ayaan-saba.jpg"
+            src="/images/couple-ayaan-saba.webp"
             alt="Muslim couple beginning their journey together looking at mosque"
             fill
             sizes="(max-width: 1024px) 100vw, 48vw"

@@ -223,7 +223,7 @@ export const PersonalizedMatchmakingSection: React.FC = () => {
             <div className="relative rounded-3xl overflow-hidden border border-white/15 shadow-2xl group bg-[#242220]">
               <div className="relative aspect-[4/3] sm:aspect-[16/11] w-full">
                 <Image
-                  src="/images/expert-guidance-consultation.jpg"
+                  src="/images/expert-guidance-consultation.webp"
                   alt="Personalized Islamic matrimonial consultation salon"
                   fill
                   sizes="(max-width: 1024px) 100vw, 42vw"

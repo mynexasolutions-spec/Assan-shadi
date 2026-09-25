@@ -126,9 +126,10 @@ export const PersonalizedSupervisorSection: React.FC = () => {
                 {/* Main Card */}
                 <div className="relative rounded-2xl overflow-hidden border-2 border-[#b9965b]/40 shadow-2xl bg-[#1e1e1e] aspect-[4/5]">
                   <Image
-                    src="/images/expert-guidance-consultation.jpg"
-                    alt="Couple Receiving Matrimonial Guidance - Asaan Shaadi"
+                    src="/images/expert-guidance-consultation.webp"
+                    alt="Matrimonial advisor consulting with a couple"
                     fill
+                    sizes="(max-width: 1024px) 100vw, 42vw"
                     className="object-cover object-center transform hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/25 to-transparent" />

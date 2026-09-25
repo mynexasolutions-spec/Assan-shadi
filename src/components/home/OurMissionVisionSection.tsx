@@ -279,9 +279,10 @@ export const OurMissionVisionSection: React.FC = () => {
             className="relative w-full h-full will-change-transform"
           >
             <Image
-              src="/images/mosque-arch-left.jpg"
+              src="/images/mosque-arch-left.webp"
               alt="Majestic Islamic Mosque Arch Architecture"
               fill
+              sizes="(max-width: 1024px) 100vw, 48vw"
               className="object-cover object-top lg:object-center"
             />
             {/* Smooth Vignette to blend into dark background on the right */}
@@ -319,6 +320,29 @@ export const OurMissionVisionSection: React.FC = () => {
           <p className="heading-segment text-stone-200 text-sm sm:text-base lg:text-lg font-sans-modern leading-relaxed text-center">
             Guided by faith, driven by purpose — for stronger families and a
             better Ummah.
+          </p>
+
+          {/* Plain-language service summary (SEO / clarity) */}
+          <p className="mt-5 text-stone-300 text-sm sm:text-base font-sans-modern leading-relaxed text-center">
+            Asaan Shaadi is a Muslim matrimonial service based in Bengaluru,
+            built for families who want a simple, sunnah-aligned Nikah without
+            dowry pressure. Every biodata is verified with a guardian, photos
+            stay private until both families agree, and a personal matchmaking
+            supervisor guides you from first proposal to Nikah. Learn{" "}
+            <Link
+              href="/how-it-works"
+              className="text-[#FFD78A] underline underline-offset-4 hover:text-white"
+            >
+              how guardian verification works
+            </Link>{" "}
+            or{" "}
+            <Link
+              href="/submit-biodata"
+              className="text-[#FFD78A] underline underline-offset-4 hover:text-white"
+            >
+              submit your biodata
+            </Link>{" "}
+            to begin.
           </p>
         </div>
 
